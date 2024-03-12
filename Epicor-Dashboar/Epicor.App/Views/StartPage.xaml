@@ -6,15 +6,21 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Epicor.App.Helpers"
         xmlns:vm="clr-namespace:Epicor.App.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="StartPage"
         Height="450" 
-        Width="800">
+        Width="800"
+        WindowState="Maximized"
+         WindowStyle="ToolWindow"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen">
 
 
 
     <Window.Resources>
-       
+
 
         <!--<local:ResponsiveFontSizeConverter x:Key="ResponsiveFontSizeConverter" />-->
         <local:IsGreaterThanConverter x:Key="IsGreaterThanConverter" />
@@ -30,33 +36,100 @@
 
 
         <!--Drawer Host-->
-        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding IsChecked}">
+        <materialDesign:DrawerHost
+            x:Name="RootDrawerHost"
+            IsLeftDrawerOpen="{Binding IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="212">
 
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                 DockPanel.Dock="Top"
-                HorizontalAlignment="Right" Margin="16"
+                HorizontalAlignment="Right" Margin="3"
                 IsChecked="{Binding IsChecked}" Command="{Binding ToggleCommand }" />
 
-                    <DockPanel DockPanel.Dock="Top">
+                    <StackPanel DockPanel.Dock="Top">
                         <Image Source="/Images/sistemas.png" Width="100" Height="100" />
-                    </DockPanel>
-                  
+                    </StackPanel>
 
+                    <Grid x:Name="GridMenu" Width="220" 
+                          Background="{StaticResource PrimaryHueMidBrush}" Margin="0">
+                        <Grid.Effect>
+                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+                        </Grid.Effect>
 
-                    <ScrollViewer HorizontalAlignment="Stretch" 
+                        <ListView x:Name="ListViewMenu" Foreground="#FFff" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                  SelectionChanged="ListViewMenu_SelectionChanged">
+
+                            <ListViewItem x:Name="ItemHome" Height="60" 
+                 BorderThickness="0.5" 
+                 BorderBrush="#00B0FF">
+
+                                <StackPanel Orientation="Horizontal"  >
+                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10" />
+                                </StackPanel>
+                            </ListViewItem>
+
+                            <!--<ListViewItem x:Name="ItemHome" Height="60" 
+                                      BorderThickness="0.5" 
+                                      BorderBrush="#00B0FF">
+                                <i1:Interaction.Triggers>
+                                    <i1:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                        <i1:InvokeCommandAction Command="{Binding vm.ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}" />
+                                    </i1:EventTrigger>
+                                </i1:Interaction.Triggers>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10" />
+                                </StackPanel>
+                            </ListViewItem>-->
+
+                            <!--<ListViewItem x:Name="ItemHome" Height="60" 
+                                          BorderThickness="0.5" 
+                                          BorderBrush="#00B0FF">
+                                
+                                <StackPanel Orientation="Horizontal"  >
+                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10" />
+                                </StackPanel>
+                            </ListViewItem>-->
+
+                            <ListViewItem x:Name="ItemCreate" Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Pencil" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Create" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Ticket" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Tickets" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Messages" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+
+                        </ListView>
+
+                    </Grid>
+
+                    <!--<ScrollViewer HorizontalAlignment="Stretch" 
                               HorizontalScrollBarVisibility="Disabled" 
                                VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="Menu" Margin="10" />
-                    </ScrollViewer>
+                    </ScrollViewer>-->
                 </DockPanel>
 
 
             </materialDesign:DrawerHost.LeftDrawerContent>
-        
 
-        <!--Color Zone-->
+
+            <!--Color Zone-->
             <DockPanel>
 
                 <materialDesign:ColorZone 
@@ -64,6 +137,17 @@
                                  Padding="16"
                                 Mode="PrimaryDark" >
                     <DockPanel>
+                        <!--<StackPanel  DockPanel.Dock="Top" Margin="0, 5">
+
+                            <Button
+                                HorizontalAlignment="Right"
+                                Width="25"
+                                Height="25"
+                              Content="{materialDesign:PackIcon CloseBox}"
+                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                              ToolTip="Icon" />
+
+                        </StackPanel>-->
 
                         <ToggleButton  x:Name="MenuToggleButton"
                  Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
@@ -90,8 +174,8 @@
                     </DockPanel>
                 </materialDesign:ColorZone>
 
-                <Grid>
-                    
+                <Grid x:Name="GridMain">
+
                 </Grid>
             </DockPanel>
             <!--Color Zone-->

@@ -1,27 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Epicor.App.Controls;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Epicor.App.Views
 {
-    /// <summary>
-    /// Interaction logic for StartPage.xaml
-    /// </summary>
+
     public partial class StartPage : Window
     {
         public StartPage()
         {
             InitializeComponent();
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UserControl usc = null;
+            GridMain.Children.Clear();
+
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "ItemHome":
+                    usc = new UserControlHome();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemCreate":
+                    usc = new UserControlQueue();
+                    GridMain.Children.Add(usc);
+                    break;
+                default:
+                    break;
+            }
+         
+            RootDrawerHost.IsLeftDrawerOpen = false;
+
         }
     }
 }

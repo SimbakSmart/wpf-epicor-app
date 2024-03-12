@@ -1,11 +1,7 @@
 ﻿
-
-//using PropertyChanged;
-//using System.Threading.Tasks;
-//using System.Windows.Input;
-
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 
 
 
@@ -14,7 +10,7 @@ namespace Epicor.App.ViewModel
   
     public class MainViewModel : ObservableObject
     {
-        
+
         public bool IsChecked { get; set; }
 
 
@@ -26,23 +22,11 @@ namespace Epicor.App.ViewModel
         [RelayCommand]
         void ToggleCommand()
         {
-            IsChecked = !IsChecked;  
+            IsChecked = !IsChecked;
         }
 
-        //public ICommand ToggleCommand { get; private set; }
 
-        //public MainViewModel()
-        //{
-        //    IsOpen = false;
 
-        //    //ToggleCommand = new Command
-        //    //(async () => await ToggleMenuAsync());
-        //   // ToggleCommand = new RelayCommand(ToggleMenuAsyn);
-        //}
-        ////private Task<bool> ToggleMenuAsync()
-        //{
-        //   return IsOpen = !IsOpen;
-        //}
 
     }
 }
