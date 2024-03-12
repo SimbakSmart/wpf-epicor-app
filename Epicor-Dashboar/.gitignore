@@ -1,0 +1,10 @@
+.vs
+
+Epicor.App/bin
+Epicor.App/obj
+
+Epicor.Core/bin
+Epicor.Core/obj
+
+Epicor.Infraestructure/bin
+Epicor.Infraestructure/obj
