@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Epicor.Infraestructure
+﻿namespace Epicor.Infraestructure
 {
     public class Class1
     {
+
     }
 }

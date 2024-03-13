@@ -3,49 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Epicor.App"
         mc:Ignorable="d"
-        Title="MainWindow" 
-         Height="700"
-        Width="1350"
-        MinWidth="480"
-        WindowStyle="None"
-         AllowsTransparency="True"
-         ResizeMode="CanResizeWithGrip"
-         WindowStartupLocation="CenterScreen"
-         MouseDown="ResponsiveWindow_MouseDown"
-         MouseMove="ResponsiveWindow_MouseMove"
-         MouseUp="ResponsiveWindow_MouseUp">
-    
-    
-       <Grid>
-        <materialDesign:ColorZone
-  Padding="16"
-  Mode="PrimaryMid">
-            <DockPanel>
-                <materialDesign:PopupBox
-      DockPanel.Dock="Right"
-      PlacementMode="BottomAndAlignRightEdges">
-                    <ListBox>
-                        <ListBoxItem
-          Content="Hello World" />
-                        <ListBoxItem
-          Content="Nice Popup" />
-                        <ListBoxItem
-          Content="Goodbye" />
-                    </ListBox>
-                </materialDesign:PopupBox>
-                <StackPanel
-      Orientation="Horizontal">
-                    <ToggleButton
-        Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock
-        Margin="16,0,0,0"
-        VerticalAlignment="Center"
-        Text="Material Design In XAML Toolkit" />
-                </StackPanel>
-            </DockPanel>
-        </materialDesign:ColorZone>
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <materialDesign:Card Padding="32" Margin="16">
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">My First Material Design App</TextBlock>
+        </materialDesign:Card>
     </Grid>
 </Window>
