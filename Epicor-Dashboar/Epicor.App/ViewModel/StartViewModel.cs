@@ -8,13 +8,27 @@ namespace Epicor.App.ViewModel
     public partial class StartViewModel : ObservableObject
     {
         [ObservableProperty]
-        private bool _isActive =false;
+        //[NotifyCanExecuteChangedFor(nameof(ToggleCommand))]
+        private bool _isChecked;
+
+
+        public StartViewModel()
+        {
+            IsChecked = false;
+        }
 
 
         [RelayCommand]
-        private void Toogle()
+        private void ToggleOpen()
         {
-            IsActive = !IsActive;
+            IsChecked = true;
+        }
+
+        [RelayCommand]
+        private void ToggleClose()
+        {
+            IsChecked = false;
         }
     }
 }
+

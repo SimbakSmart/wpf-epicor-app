@@ -6,11 +6,30 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\sistemas.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\Anton-Regular.ttf" />
+    <None Remove="Fonts\MadimiOne-Regular.ttf" />
+    <None Remove="Images\smart.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\sistemas.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="MaterialDesignThemes" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Anton-Regular.ttf" />
+    <Resource Include="Fonts\MadimiOne-Regular.ttf" />
+    <Resource Include="Images\smart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

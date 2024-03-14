@@ -3,21 +3,125 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Epicor.App.View"
         xmlns:vm="clr-namespace:Epicor.App.ViewModel"
         mc:Ignorable="d"
-        Title="StartPage" Height="450" Width="800">
+        Title="Graficas Epicor" Height="450" Width="800">
 
     <Window.DataContext>
-
         <vm:StartViewModel/>
     </Window.DataContext>
-    
-    <Grid>
 
-        <StackPanel>
-            <TextBlock Text="{Binding IsActive}" />
-            <Button Content="Click" Command="{Binding ToogleCommand}" Width="125" />
-        </StackPanel>
-    </Grid>
+    <materialDesign:DialogHost Identifier="RootDialog">
+
+
+        <!--Drawer Host-->
+        <materialDesign:DrawerHost
+            x:Name="RootDrawerHost"
+            IsLeftDrawerOpen="{Binding IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="212">
+
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Right" Margin="3"
+                IsChecked="{Binding IsChecked}" Command="{Binding ToggleCloseCommand }" />
+
+                    <StackPanel DockPanel.Dock="Top">
+                        <!--<Image Source="/Images/smart.png" Width="100" Height="100" />-->
+                        <Image Source="/Images/smart.png" Width="100" Height="100" />
+
+                        
+                    </StackPanel>
+
+                    <Grid x:Name="GridMenu" Width="220" 
+                          Background="{StaticResource PrimaryHueMidBrush}" Margin="0">
+                        <Grid.Effect>
+                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+                        </Grid.Effect>
+
+                        <ListView x:Name="ListViewMenu" Foreground="#FFff" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  SelectionChanged="ListViewMenu_SelectionChanged">
+
+                            <ListViewItem x:Name="ItemQueue" Height="60" 
+                                         BorderThickness="0.5" 
+                                         BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal"  >
+                                    <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Queues" VerticalAlignment="Center" Margin="20 10" />
+                                </StackPanel>
+                            </ListViewItem>
+
+                            <ListViewItem x:Name="ItemUsers" Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Usuarios" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Ticket" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Tickets" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Messages" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+
+                        </ListView>
+
+                    </Grid>
+                </DockPanel>
+
+
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+
+            <!--Color Zone-->
+            <DockPanel>
+
+                <materialDesign:ColorZone 
+                               DockPanel.Dock="Top"
+                                 Padding="16"
+                                Mode="PrimaryDark" >
+                    <DockPanel>
+                        <ToggleButton  x:Name="MenuToggleButton"
+                 Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                 IsChecked="{Binding IsChecked}"
+                 Command="{Binding ToggleOpenCommand }"/>
+
+                        <materialDesign:PopupBox 
+                            DockPanel.Dock="Right" 
+                            PlacementMode="BottomAndAlignRightEdges" 
+                            StaysOpen="False">
+                            <StackPanel>
+                                <Button Content="Hello World" />
+                                <Button Content="Nice Popup" />
+                                <Button Content="Can't Touch This" IsEnabled="False" />
+                                <Separator/>
+                                <Button Content="Goodbye" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+
+                        <TextBlock Text="GRAFICAS DE PRODUCTIVIDAD" 
+                                     HorizontalAlignment="Center" 
+                                    Style="{StaticResource MenuTitleBlockStyle}" />
+                        
+                    </DockPanel>
+                </materialDesign:ColorZone>
+
+                <Grid x:Name="GridMain">
+                    <!--BODY CONTENT-->
+                </Grid>
+            </DockPanel>
+            <!--Color Zone-->
+        </materialDesign:DrawerHost>
+        <!--Drawer Host-->
+    </materialDesign:DialogHost>
+
 </Window>
