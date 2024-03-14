@@ -108,7 +108,7 @@
                             </StackPanel>
                         </materialDesign:PopupBox>
 
-                        <TextBlock Text="GRAFICAS DE PRODUCTIVIDAD" 
+                        <TextBlock x:Name="MainTitle" Text="GRAFICAS DE PRODUCTIVIDAD" 
                                      HorizontalAlignment="Center" 
                                     Style="{StaticResource MenuTitleBlockStyle}" />
                         
@@ -117,6 +117,8 @@
 
                 <Grid x:Name="GridMain">
                     <!--BODY CONTENT-->
+
+                    <Label x:Name="TotalCount" Content="0" />
                 </Grid>
             </DockPanel>
             <!--Color Zone-->

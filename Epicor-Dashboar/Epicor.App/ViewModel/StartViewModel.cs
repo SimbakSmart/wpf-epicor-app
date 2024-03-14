@@ -8,7 +8,6 @@ namespace Epicor.App.ViewModel
     public partial class StartViewModel : ObservableObject
     {
         [ObservableProperty]
-        //[NotifyCanExecuteChangedFor(nameof(ToggleCommand))]
         private bool _isChecked;
 
 
