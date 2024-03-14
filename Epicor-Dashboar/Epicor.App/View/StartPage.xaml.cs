@@ -1,8 +1,9 @@
 ﻿
-using Epicor.App.View.Controls;
-using Epicor.Infraestructure.Services;
+
+using Epicor.App.UC;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 
 namespace Epicor.App.View
@@ -13,23 +14,18 @@ namespace Epicor.App.View
     public partial class StartPage : Window
     {
 
+        private bool _isMouseDown = false;
+        private Point _initialMousePosition;
+
         private UserControl usc = null;
         public StartPage()
         {
             InitializeComponent();
-            //usc = new QueueControl();
-            //GridMain.Children.Add(usc);
-            //MainTitle.Text = "ANÁLISIS DE  REPORTES QUEUE";
+            usc = new QueueControl();
+            GridMain.Children.Add(usc);
+            MainTitle.Text = "ANÁLISIS DE  REPORTES QUEUE";
 
-            SetTotal();
-        }
 
-        private async Task SetTotal()
-        {
-            QueueService qs = new QueueService();
-
-            int total = await qs.GetTotalAsync();
-            TotalCount.Content = total.ToString();
         }
 
         private void ListViewMenu_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -55,6 +51,28 @@ namespace Epicor.App.View
             MainTitle.Text = _title;
             GridMain.Children.Add(usc);
             RootDrawerHost.IsLeftDrawerOpen = false;
+        }
+
+        private void ResponsiveWindow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            _isMouseDown = true;
+            _initialMousePosition = e.GetPosition(this);
+        }
+
+        private void ResponsiveWindow_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isMouseDown)
+            {
+                Point currentMousePosition = e.GetPosition(this);
+                Vector offset = currentMousePosition - _initialMousePosition;
+                Left += offset.X;
+                Top += offset.Y;
+            }
+        }
+
+        private void ResponsiveWindow_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            _isMouseDown = false;
         }
     }
 }

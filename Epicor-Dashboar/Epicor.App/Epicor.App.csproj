@@ -10,8 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\Angkor-Regular.ttf" />
     <None Remove="Fonts\Anton-Regular.ttf" />
     <None Remove="Fonts\MadimiOne-Regular.ttf" />
+    <None Remove="Images\meeting.png" />
     <None Remove="Images\smart.png" />
   </ItemGroup>
 
@@ -21,6 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc2" />
     <PackageReference Include="MaterialDesignThemes" Version="4.7.1" />
   </ItemGroup>
 
@@ -30,8 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\Angkor-Regular.ttf" />
     <Resource Include="Fonts\Anton-Regular.ttf" />
     <Resource Include="Fonts\MadimiOne-Regular.ttf" />
+    <Resource Include="Images\meeting.png" />
     <Resource Include="Images\smart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

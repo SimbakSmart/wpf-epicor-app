@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Epicor.App.View.Controls
+namespace Epicor.App.UC
 {
     /// <summary>
-    /// Interaction logic for UsersControl.xaml
+    /// Interaction logic for QueueControl.xaml
     /// </summary>
-    public partial class UsersControl : UserControl
+    public partial class QueueControl : UserControl
     {
-        public UsersControl()
+        public QueueControl()
         {
             InitializeComponent();
         }

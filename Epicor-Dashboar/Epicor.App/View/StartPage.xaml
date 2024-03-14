@@ -7,8 +7,19 @@
         xmlns:local="clr-namespace:Epicor.App.View"
         xmlns:vm="clr-namespace:Epicor.App.ViewModel"
         mc:Ignorable="d"
-        Title="Graficas Epicor" Height="450" Width="800">
-
+        Title="Graficas Epicor" 
+        Height="450" 
+        Width="800"
+        MinWidth="650"
+        MinHeight="450"
+        
+         AllowsTransparency="False"
+         ResizeMode="CanResizeWithGrip"
+         WindowStartupLocation="CenterScreen"
+         MouseDown="ResponsiveWindow_MouseDown"
+         MouseMove="ResponsiveWindow_MouseMove"
+         MouseUp="ResponsiveWindow_MouseUp">
+    <!--WindowStyle="None"-->
     <Window.DataContext>
         <vm:StartViewModel/>
     </Window.DataContext>
@@ -100,7 +111,7 @@
                             PlacementMode="BottomAndAlignRightEdges" 
                             StaysOpen="False">
                             <StackPanel>
-                                <Button Content="Hello World" />
+                                <Button Content="Hello World"  Command="{Binding MaxAppCommand}"/>
                                 <Button Content="Nice Popup" />
                                 <Button Content="Can't Touch This" IsEnabled="False" />
                                 <Separator/>
@@ -110,15 +121,13 @@
 
                         <TextBlock x:Name="MainTitle" Text="GRAFICAS DE PRODUCTIVIDAD" 
                                      HorizontalAlignment="Center" 
-                                    Style="{StaticResource MenuTitleBlockStyle}" />
+                                    Style="{StaticResource LargeTitleBlockStyle}" />
                         
                     </DockPanel>
                 </materialDesign:ColorZone>
 
                 <Grid x:Name="GridMain">
                     <!--BODY CONTENT-->
-
-                    <Label x:Name="TotalCount" Content="0" />
                 </Grid>
             </DockPanel>
             <!--Color Zone-->

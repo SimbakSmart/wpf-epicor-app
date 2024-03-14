@@ -7,10 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\Controls\QueueControl.xaml.cs">
+    <Compile Update="UC\QueueControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Controls\UsersControl.xaml.cs">
+    <Compile Update="UC\UsersControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\StartPage.xaml.cs">
@@ -18,16 +18,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\Fonts.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Controls\QueueControl.xaml">
+    <Page Update="UC\QueueControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Controls\UsersControl.xaml">
+    <Page Update="UC\UsersControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\StartPage.xaml">

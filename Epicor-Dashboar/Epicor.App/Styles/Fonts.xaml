@@ -6,16 +6,29 @@
     <!--Font Files-->
     <FontFamily x:Key="AntonRegular">pack://appliction;,,,/Fonts/#Anton Regular</FontFamily>
     <FontFamily x:Key="MadimiOneRegular">pack://appliction;,,,/Fonts/#MadimiOne Regular</FontFamily>
-
+    <FontFamily x:Key="AngkorRegular">pack://appliction;,,,/Fonts/#Angkor Regular</FontFamily>
     <!--Font Size-->
     <system:Double x:Key="FontSizeExtraLarge">24</system:Double>
+    <system:Double x:Key="FontSizeLarge">20</system:Double>
+    <system:Double x:Key="FontSizeRegular">14</system:Double>
+    <system:Double x:Key="FontSizeSmall">10</system:Double>
+    <system:Double x:Key="FontSizeExtraSmall">8</system:Double>
 
 
-
-    <!--Menu Title-->
-    <Style TargetType="{x:Type TextBlock}" x:Key="MenuTitleBlockStyle">
+    <!--Title-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="LargeTitleBlockStyle">
         <Setter Property="FontFamily" Value="{StaticResource AntonRegular}" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeExtraLarge}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextBlockStyle">
+    <Setter Property="FontFamily" Value="{StaticResource AntonRegular}" />
+    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="SubtitleTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource AntonRegular}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
     </Style>
 
 </ResourceDictionary>
