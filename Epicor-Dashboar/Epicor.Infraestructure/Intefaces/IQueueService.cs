@@ -1,6 +1,5 @@
 ﻿
 using Epicor.Core;
-using System.Collections;
 
 namespace Epicor.Infraestructure.Intefaces
 {

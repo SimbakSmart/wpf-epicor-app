@@ -15,6 +15,10 @@ namespace Epicor.App.ViewModel
     {
 
         private QueueService qs = null;
+
+        [ObservableProperty]
+        private bool _isLoading;
+
         [ObservableProperty]
         private int _total;
 
@@ -43,6 +47,7 @@ namespace Epicor.App.ViewModel
 
         public QueueViewModel()
         {
+            IsLoading= false;
             qs = new QueueService();
             Task.Run(async () => await LoadAllTheInformationAsync());
             
@@ -50,11 +55,14 @@ namespace Epicor.App.ViewModel
 
         private async Task LoadAllTheInformationAsync()
         {
+            IsLoading = true;
+
             await GetTotalSupportCallOpenAsync();
             await BarGraphAsync();
             await UrgencyPieChartAsync();
             await PriorityPieChartAsync();
              qs.Dispose();
+            IsLoading = false;
         }
 
         private async Task GetTotalSupportCallOpenAsync()

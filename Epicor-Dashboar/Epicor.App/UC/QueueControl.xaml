@@ -20,7 +20,10 @@
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" x:Name="scrollView">
+        
         <Grid Margin="10 0">
+
+          
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -57,6 +60,25 @@
                         HorizontalAlignment="Left"/>
 
             </StackPanel>
+
+            <StackPanel  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                         Margin="10">
+                <ProgressBar
+                    Width="35"
+                    Height="35"
+                IsIndeterminate="True"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                             Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibilityConverter}}"
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Value="35" />
+                <TextBlock 
+                     HorizontalAlignment="Center"
+                     Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                    Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Text="Cargando.." />
+            </StackPanel>
+            
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
                 <materialDesign:Card
