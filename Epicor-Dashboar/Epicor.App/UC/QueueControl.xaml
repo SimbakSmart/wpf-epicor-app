@@ -25,7 +25,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -84,7 +85,8 @@
                                  Margin="10"
                                  Grid.Row="2" 
                                  Grid.Column="0" 
-                                 Grid.ColumnSpan="2"  >
+                                 Grid.ColumnSpan="2" 
+                       materialDesign:ElevationAssist.Elevation="Dp3">
                 <Grid>
 
                     <Grid.RowDefinitions>
@@ -94,7 +96,7 @@
                     <TextBlock 
                             Grid.Row="0"
                             HorizontalAlignment="Center" 
-                            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                            Style="{StaticResource LargeTitleBlockStyle}"
                             Text="TOTAL POR ÁREAS" />
 
                     <lvc:CartesianChart 
@@ -106,7 +108,142 @@
             </materialDesign:Card>
             <!--GRAFICA DE BARRAS-->
 
+            <!--GRAFICA DE URGENCIAS-->
 
+            <materialDesign:Card 
+                      Margin="10"
+                      Grid.Row="2" 
+                      Grid.Column="2" 
+                 materialDesign:ElevationAssist.Elevation="Dp3">
+
+                <Grid>
+                    <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>-->
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="325" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"              
+                        HorizontalAlignment="Center" 
+                        Style="{StaticResource LargeTitleBlockStyle}"
+                        Text="TOTAL URGENCIAS" />       
+
+
+                         <lvc:PieChart
+                          Grid.Row="1"                       
+                          IsClockwise="False"
+                          InitialRotation="-90"
+                         Series="{Binding SeriesUrgency }">
+                        </lvc:PieChart>
+
+                        <DataGrid
+                        Grid.Row="2"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      HeadersVisibility="All"
+                      ItemsSource="{Binding ListUrgency}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="URGENCIA" Binding="{Binding Urgency}" />
+                            <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+                
+            </materialDesign:Card>
+
+            <!--GRAFICA DE URGENCIAS-->
+
+
+            <!--GRAFICA DE PRIORIDAD-->
+            <materialDesign:Card 
+          Margin="10"
+          Grid.Row="2" 
+          Grid.Column="3" 
+     materialDesign:ElevationAssist.Elevation="Dp3">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="325" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"              
+            HorizontalAlignment="Center" 
+            Style="{StaticResource LargeTitleBlockStyle}"
+            Text="TOTAL PRIORIDAD" />
+
+
+                    <lvc:PieChart
+              Grid.Row="1"                       
+              IsClockwise="False"
+              InitialRotation="-90"
+             Series="{Binding SeriesPriority}">
+                    </lvc:PieChart>
+
+                    <DataGrid
+            Grid.Row="2"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          HeadersVisibility="All"
+          ItemsSource="{Binding ListPriority}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="PRIORIDAD" Binding="{Binding Priority}" />
+                            <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+
+            </materialDesign:Card>
+
+            <!--GRAFICA DE PRIORIDAD-->
+
+
+
+
+            <!--GRAFICA DE BARRAS-->
+            <materialDesign:Card 
+                     Margin="10"
+                     Grid.Row="3" 
+                     Grid.Column="0" 
+                     Grid.ColumnSpan="2" 
+           materialDesign:ElevationAssist.Elevation="Dp3">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock 
+                Grid.Row="0"
+                HorizontalAlignment="Center" 
+                Style="{StaticResource LargeTitleBlockStyle}"
+                Text="TOTAL POR ÁREAS" />
+
+                    <lvc:CartesianChart 
+            Grid.Row="1"
+            Series="{Binding Series}"
+            XAxes="{Binding XAxes}"
+            />
+                </Grid>
+            </materialDesign:Card>
+            <!--GRAFICA DE BARRAS-->
 
         </Grid>
     </ScrollViewer>

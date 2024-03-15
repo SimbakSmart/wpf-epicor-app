@@ -35,7 +35,6 @@ namespace Epicor.Infraestructure.Services
             return _total;
         }
 
-
         public async Task<List<Queues>> TotalActivesOpenByQueueAsync()
         {
             List<Queues> _list = null;
@@ -53,7 +52,11 @@ namespace Epicor.Infraestructure.Services
                             _list = new List<Queues>();
                             while (reader.Read())
                             {
-                                _list.Add(new Queues(reader["Queue"].ToString(), Convert.ToInt32(reader["Total"])));
+                                _list.Add(new Queues.QueuesBuilder()
+                                               .WithName(reader["Queue"].ToString())
+                                               .WithTotal(Convert.ToInt32(reader["Total"]))
+                                               .Build()
+                                               ); 
                             }
                             reader.Close();
                         }
@@ -69,15 +72,15 @@ namespace Epicor.Infraestructure.Services
             return _list;
         }
 
-        public  List<Queues> TotalActivesOpenByQueue()
+        public async Task<List<Queues>> TotalUrgencyOpenByQueueAsync()
         {
             List<Queues> _list = null;
             try
             {
                 using (OdbcConnection con = new OdbcConnection(DBContext.ConnectionString))
                 {
-                    con.Open();
-                    using (OdbcCommand com = new OdbcCommand(QueueQueryString.TOTAL_OPEN_BY_QUEUE, con))
+                    await con.OpenAsync();
+                    using (OdbcCommand com = new OdbcCommand(QueueQueryString.TOTAL_OPEN_BY_QUEUE_URGENCY, con))
                     {
 
 
@@ -86,7 +89,11 @@ namespace Epicor.Infraestructure.Services
                             _list = new List<Queues>();
                             while (reader.Read())
                             {
-                                _list.Add(new Queues(reader["Queue"].ToString(), Convert.ToInt32(reader["Total"])));
+                                _list.Add(new Queues.QueuesBuilder()
+                                               .WithUrgency(reader["Urgency"].ToString())
+                                               .WithTotal(Convert.ToInt32(reader["Total"]))
+                                               .Build()
+                                               );
                             }
                             reader.Close();
                         }
@@ -102,12 +109,51 @@ namespace Epicor.Infraestructure.Services
             return _list;
         }
 
+        public async Task<List<Queues>> TotalPriorityOpenByQueueAsync()
+        {
+            List<Queues> _list = null;
+            try
+            {
+                using (OdbcConnection con = new OdbcConnection(DBContext.ConnectionString))
+                {
+                    await con.OpenAsync();
+                    using (OdbcCommand com = new OdbcCommand(QueueQueryString.TOTAL_OPEN_BY_QUEUE_PRIOTIRY, con))
+                    {
 
+
+                        using (OdbcDataReader reader = com.ExecuteReader())
+                        {
+                            _list = new List<Queues>();
+                            while (reader.Read())
+                            {
+                                _list.Add(new Queues.QueuesBuilder()
+                                               .WithPriority(reader["Priority"].ToString())
+                                               .WithTotal(Convert.ToInt32(reader["Total"]))
+                                               .Build()
+                                               );
+                            }
+                            reader.Close();
+                        }
+
+                    }
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+            return _list;
+
+
+
+        }
 
         public void Dispose()
         {
             if (con != null) con.Close();
         }
 
+      
     }
 }
