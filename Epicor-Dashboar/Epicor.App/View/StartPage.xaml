@@ -10,7 +10,7 @@
         Title="Graficas Epicor" 
         Height="450" 
         Width="800"
-        MinWidth="650"
+        MinWidth="700"
         MinHeight="450"
         
          AllowsTransparency="False"

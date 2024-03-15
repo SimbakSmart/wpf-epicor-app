@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Epicor.App.UC
 {
@@ -24,5 +12,17 @@ namespace Epicor.App.UC
         {
             InitializeComponent();
         }
+
+        //private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    if (e.NewSize.Width <=700)
+        //    {
+        //        stackPanel.Orientation = Orientation.Vertical;
+        //    }
+        //    else
+        //    {
+        //        stackPanel.Orientation = Orientation.Horizontal;
+        //    }
+        //}
     }
 }
