@@ -1,4 +1,4 @@
-﻿namespace Epicor.Core
+﻿namespace Epicor.Core.Models
 {
 
 
@@ -6,8 +6,10 @@
     {
         public string Name { get; set; }
         public int Total { get; set; }
+        public int TotalClosed { get; set; }
+        public int TotalOpen { get; set; }
         public string Urgency { get; set; }
-        public string Priority{ get; set; }
+        public string Priority { get; set; }
 
         private Queues(QueuesBuilder builder)
         {
@@ -15,12 +17,16 @@
             Total = builder.Total;
             Urgency = builder.Urgency;
             Priority = builder.Priority;
+            TotalClosed = builder.TotalClosed;
+            TotalOpen = builder.TotalOpen;
         }
 
         public class QueuesBuilder
         {
             public string Name { get; private set; }
             public int Total { get; private set; }
+            public int TotalClosed { get; set; }
+            public int TotalOpen { get; set; }
             public string Urgency { get; private set; }
             public string Priority { get; set; }
 
@@ -35,6 +41,19 @@
                 Total = total;
                 return this;
             }
+
+            public QueuesBuilder WithTotalClosed(int totalClosed)
+            {
+                TotalClosed = totalClosed;
+                return this;
+            }
+
+            public QueuesBuilder WithTotalOpen(int totalOpen)
+            {
+                TotalOpen = totalOpen;
+                return this;
+            }
+
 
             public QueuesBuilder WithUrgency(string urgency)
             {
