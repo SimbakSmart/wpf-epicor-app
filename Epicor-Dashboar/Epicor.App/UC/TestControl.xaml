@@ -46,12 +46,14 @@
         
         
         <materialDesign:Transitioner SelectedIndex="0">
-            <StackPanel>
-                <TextBlock Text="PRIMERA VISTA" />
+            <Grid>
+                <!--<TextBlock Text="PRIMERA VISTA" />
                 <Button Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
                     NEXT
-                </Button>
-            </StackPanel>
+                </Button>-->
+                
+                
+            </Grid>
     <!--<WizardPageOne />-->
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
 

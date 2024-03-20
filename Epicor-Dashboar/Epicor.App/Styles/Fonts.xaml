@@ -15,11 +15,18 @@
     <system:Double x:Key="FontSizeExtraSmall">8</system:Double>
 
 
-    <!--Title-->
-    <Style TargetType="{x:Type TextBlock}" x:Key="LargeTitleBlockStyle">
+    <!--TitleTextExtraLarge-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextExtraLargeBlockStyle">
         <Setter Property="FontFamily" Value="{StaticResource AntonRegular}" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeExtraLarge}" />
     </Style>
+
+    <!--TitleTextExtraLarge-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextLargeBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource AntonRegular}" />
+        <Setter Property="FontSize" Value="{StaticResource  FontSizeLarge}" />
+    </Style>
+
 
     <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextBlockStyle">
     <Setter Property="FontFamily" Value="{StaticResource AntonRegular}" />

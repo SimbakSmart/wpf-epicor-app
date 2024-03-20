@@ -121,7 +121,7 @@
 
                         <TextBlock x:Name="MainTitle" Text="GRAFICAS DE PRODUCTIVIDAD" 
                                      HorizontalAlignment="Center" 
-                                    Style="{StaticResource LargeTitleBlockStyle}" />
+                                    Style="{StaticResource TitleTextLargeBlockStyle}" />
                         
                     </DockPanel>
                 </materialDesign:ColorZone>
