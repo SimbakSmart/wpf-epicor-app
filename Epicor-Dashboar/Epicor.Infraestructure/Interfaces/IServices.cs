@@ -6,6 +6,7 @@ namespace Epicor.Infraestructure.Interfaces
     {
         Task<List<T>> GetTotalsAsync(FiltersParams filters = null);
         Task<List<T>> GetTotalsByResponsableAsync(FiltersParams filters = null);
+        Task<List<T>> GetTotalsByUrgencyAsync(FiltersParams filters = null);
 
     }
 }

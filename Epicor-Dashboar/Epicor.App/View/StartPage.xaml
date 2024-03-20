@@ -71,7 +71,7 @@
                                     <TextBlock Text="Usuarios" VerticalAlignment="Center" Margin="20 10"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
+                            <ListViewItem x:Name="ItemTest" Height="60" BorderThickness="0.5" BorderBrush="#00B0FF">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Ticket" Height="25" Width="25" Margin="10"/>
                                     <TextBlock Text="Tickets" VerticalAlignment="Center"  Margin="20 10"/>

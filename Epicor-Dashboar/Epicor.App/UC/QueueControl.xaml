@@ -42,7 +42,7 @@
             <ge:ResponsiveGrid >
 
               
-
+                   <!--Loading-->
                 <StackPanel  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" 
                              Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibilityConverter}}" >
@@ -63,8 +63,9 @@
           Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibilityConverter}}"
           Text="Cargando.." />
                 </StackPanel>
-
-
+                <!--Loading-->
+                
+                
                 <!--Imagen-->
             <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="4" >
                 <Image   Grid.Column="0"
@@ -167,6 +168,7 @@
 
                         <DatePicker
                Width="160"
+                 Margin="4 0"               
                materialDesign:HintAssist.Hint="Fecha Inicio"
                Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
                SelectedDate="{Binding StartDate}"/>
@@ -211,7 +213,7 @@
                  Grid.Row="0"
                  HorizontalAlignment="Center" 
                  Style="{StaticResource LargeTitleBlockStyle}"
-                 Text="TOTAL POR ÁREAS" />
+                 Text="TOTAL ACTIVOS POR ÁREAS" />
 
                             <lvc:CartesianChart 
                  Grid.Row="1"
@@ -225,9 +227,85 @@
 
                 <Border ge:ResponsiveGrid.XS="6" ge:ResponsiveGrid.SM="6"  Height="480" Margin="5" >
 
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                           
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+
+                        <materialDesign:Card  
+                            Grid.Row="0" Grid.Column="0" Margin="4"
+                        materialDesign:ElevationAssist.Elevation="Dp3">
+
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock 
+                                Grid.Row="0"
+                                HorizontalAlignment="Center" 
+                                Style="{StaticResource LargeTitleBlockStyle}"
+                                Text="TOTAL POR URGENCIA" />
+                                <lvc:PieChart
+                             Grid.Row="1"                       
+                             IsClockwise="False"
+                             InitialRotation="-90"
+                                    AnimationsSpeed="00:00:00.500"
+                            Series="{Binding SeriesUrgency }">
+                                </lvc:PieChart>
+
+                                <!--<DataGrid
+                        Grid.Row="2" Width="50" Height="50"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      HeadersVisibility="All"
+                      ItemsSource="{Binding ListUrgency}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="URGENCIA" Binding="{Binding Urgency}" />
+                                        <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>-->
+
+
+
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card  
+                                 Grid.Row="0" Grid.Column="1"
+                             materialDesign:ElevationAssist.Elevation="Dp3">
+                            <TextBlock Text="Segundo" />
+                        </materialDesign:Card>
+
+                        <materialDesign:Card  
+                              Grid.Row="1" Grid.Column="0"
+                          materialDesign:ElevationAssist.Elevation="Dp3">   
+                            <TextBlock Text="Tercero" />
+                        </materialDesign:Card>
+
+                        <materialDesign:Card  
+                               Grid.Row="1" Grid.Column="1"
+                           materialDesign:ElevationAssist.Elevation="Dp3">
+                            <TextBlock Text="Cuarto" />
+                        </materialDesign:Card>
+
+
+
+                    </Grid>
+
                     <!--GRAFICA DE BARRAS-->
-                    <materialDesign:Card  
-    materialDesign:ElevationAssist.Elevation="Dp3">
+                    <!--<materialDesign:Card  
+           materialDesign:ElevationAssist.Elevation="Dp3">
                         <Grid>
 
                             <Grid.RowDefinitions>
@@ -240,13 +318,15 @@
    Style="{StaticResource LargeTitleBlockStyle}"
    Text="TOTAL POR ÁREAS" />
 
-                            <lvc:CartesianChart 
-   Grid.Row="1"
-   Series="{Binding Series}"
-   XAxes="{Binding XAxes}"
-   />
+                            <lvc:PieChart
+                          Grid.Row="1"                       
+                          IsClockwise="False"
+                          InitialRotation="-90"
+                         Series="{Binding SeriesUrgency }">
+                            </lvc:PieChart>
+
                         </Grid>
-                    </materialDesign:Card>
+                    </materialDesign:Card>-->
                     <!--GRAFICA DE BARRAS-->
 
                 </Border>

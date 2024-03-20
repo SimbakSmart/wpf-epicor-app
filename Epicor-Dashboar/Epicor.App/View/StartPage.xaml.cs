@@ -35,13 +35,17 @@ namespace Epicor.App.View
             string _title=string.Empty;
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "ItemQueu":
+                case "ItemQueue":
                     usc = new QueueControl();
                     _title ="ANÁLISIS DE  REPORTES QUEUE";
                     break;
                 case "ItemUsers":
                     usc = new UsersControl();
                     _title = "ANÁLISIS DE  REPORTES USUARIOS";
+                    break;
+                case "ItemTest":
+                    usc = new TestControl();
+                    _title = "ANÁLISIS DE  TEST";
                     break;
                 default:
                     usc = new QueueControl();
