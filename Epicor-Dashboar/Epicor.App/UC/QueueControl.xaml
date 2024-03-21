@@ -16,6 +16,19 @@
         <vm:QueueViewModel />
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <Style x:Key="CustomMaterialDesignOutlinedDatePicker" TargetType="{x:Type DatePicker}" 
+               BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="materialDesign:HintAssist.Foreground" Value="Red"/>
+                    <!-- También puedes ajustar otros atributos como el color del texto de ayuda aquí -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
 
 
     <Grid>
@@ -39,53 +52,8 @@
 
                     <ge:ResponsiveGrid>
 
-                        <!--MENSJAE DE FECHA-->
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="12" >
-             
-                                <TextBlock HorizontalAlignment="Right"
-                                          Text="{Binding Message}" 
-                                           Margin="4 0"
-  
-                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}" />
-                        
-  
-                        </Border>
-                        <!--MENSJAE DE FECHA-->
-
-                        <!--IMAGE-->
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="2" >
-
-                            <StackPanel Orientation="Horizontal">
-                                <Image   Grid.Column="0"
-                         Source="/Images/meeting.png"
-                          Stretch="UniformToFill"
-                          Width="100"
-                          Height="100"
-                          HorizontalAlignment="Left"/>
-
-                                <Button  
-                              Height="50"                                               
-                              Margin="4 0"
-                              Style="{StaticResource  MaterialDesignFlatDarkBgButton}"
-                              Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="ChartPie" Height="25" Width="25" />
-                                        <TextBlock Text="Otras Graficas"  Margin="4"/>
-                                    </StackPanel>
-
-                                </Button>
-
-
-
-                            </StackPanel>
-                        </Border>
-                        <!--IMAGE-->
-
-
                         <!--TOTALS-->
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="4"  >
-
-
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="7" >
                             <StackPanel Orientation="Horizontal"  >
 
                                 <!--GRAN TOTAL-->
@@ -162,12 +130,57 @@ Text="TOTAL DE REGISTROS" />
 
 
                             </StackPanel>
-
                         </Border>
+
                         <!--TOTALS-->
 
+                        <!--MENSJAE DE FECHA-->
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="5" >
+             
+                                <TextBlock HorizontalAlignment="Right"
+                                          Text="{Binding Message}" 
+                                           Margin="4 0"
+  
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}" />
+                        
+  
+                        </Border>
+                        <!--MENSJAE DE FECHA-->
+
+                        <!--IMAGE-->
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="4" >
+
+                            <StackPanel Orientation="Horizontal">
+                                <Image   Grid.Column="0"
+                         Source="/Images/meeting.png"
+                          Stretch="UniformToFill"
+                          Width="100"
+                          Height="100"
+                          HorizontalAlignment="Left"/>
+
+                                <Button  
+                              Height="50"                                               
+                              Margin="4 0"
+                              Style="{StaticResource  MaterialDesignFlatDarkBgButton}"
+                              Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ChartPie" Height="25" Width="25" />
+                                        <TextBlock Text="Otras Graficas"  Margin="4"/>
+                                    </StackPanel>
+
+                                </Button>
+
+
+
+                            </StackPanel>
+                        </Border>
+                        <!--IMAGE-->
+
+
+                    
+
                         <!--FILTERS-->
-                        <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="6" >
+                        <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="8" >
 
 
                             <StackPanel
@@ -176,16 +189,24 @@ Text="TOTAL DE REGISTROS" />
 
                                 <DatePicker
                                 Width="160"
-                                Margin="4 0"               
-                                materialDesign:HintAssist.Hint="Fecha Inicio"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
-                                SelectedDate="{Binding StartDate}"/>
+                                materialDesign:HintAssist.Hint="Fecha Final"
+                                materialDesign:HintAssist.HelperText="{Binding MessageStartDate}"
+                                materialDesign:ValidationAssist.HasError="{Binding StartDateHasError}"
+                                Style="{StaticResource CustomMaterialDesignOutlinedDatePicker}" 
+                                SelectedDate="{Binding EndDate}"/>
 
-                                <DatePicker
+
+                                <!--<DatePicker
                                 Width="160"
                                 materialDesign:HintAssist.Hint="Fecha Final"
+                                materialDesign:HintAssist.HelperText="Fecha final requerida"
+                                materialDesign:HintAssist.HelperTextFontSize="14"                             
+                                materialDesign:ValidationAssist.HasError="False"                          
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
-                                SelectedDate="{Binding EndDate}"/>
+                                SelectedDate="{Binding EndDate}"/>-->
+
+             
+
 
                                 <Button  
                                 Height="50" 

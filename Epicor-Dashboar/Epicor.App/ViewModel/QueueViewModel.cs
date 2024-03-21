@@ -30,6 +30,12 @@ namespace Epicor.App.ViewModel
         private string _message;
 
         [ObservableProperty]
+        private bool _startDateHasError;
+
+        [ObservableProperty]
+        private string _messageStartDate;
+
+        [ObservableProperty]
         private DateTime? _startDate;
 
         [ObservableProperty]
@@ -95,6 +101,7 @@ namespace Epicor.App.ViewModel
 
         public QueueViewModel()
         {
+           
             IsEnable = true;
             qs = new QueueServices();
             Task.Run(async () => await LoadDataAsync());
@@ -261,6 +268,10 @@ namespace Epicor.App.ViewModel
         [RelayCommand]
         private async Task SendRequesByDateRangeAsync()
         {
+
+            StartDateHasError = true;
+
+            MessageStartDate = "La fina final es requerida";
             try
             {
                 IsLoading = true;
