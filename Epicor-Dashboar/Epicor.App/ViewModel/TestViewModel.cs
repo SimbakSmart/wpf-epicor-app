@@ -70,7 +70,7 @@ namespace Epicor.App.ViewModel
 
             //});
 
-            Title =  new LabelVisual
+                    Title =  new LabelVisual
                     {
                         Text = "My chart title",
                         TextSize = 25,

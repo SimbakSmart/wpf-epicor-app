@@ -39,16 +39,16 @@
 
                     <ge:ResponsiveGrid>
 
-
+                           <!--MENSJAE DE FECHA-->
                         <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="12" >
                             <TextBlock Text="{Binding Message}" Margin="4 0"
                                        HorizontalAlignment="Right"
                               Style="{StaticResource MaterialDesignSubtitle1TextBlock}" />
                         </Border>
+                        <!--MENSJAE DE FECHA-->
 
-                      
                         <!--IMAGE-->
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="4" >
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="2" >
 
                             <StackPanel Orientation="Horizontal">
                             <Image   Grid.Column="0"
@@ -76,10 +76,92 @@
                         </Border>
                         <!--IMAGE-->
 
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="3"  />
                         
-                         <!--FILTERS-->
-                        <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="5" >
+                         <!--TOTALS-->
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="4"  >
+
+                            <StackPanel Orientation="Horizontal" >
+
+                                <!--GRAN TOTAL-->
+                                <materialDesign:Card
+                     Margin="2"
+                     HorizontalAlignment="Right"
+                    materialDesign:ElevationAssist.Elevation="Dp3"
+                    Width="150"
+                    Height="70"
+                    Background="{DynamicResource PrimaryHueDarkBrush}"
+                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                    UniformCornerRadius="6">
+
+                                    <StackPanel HorizontalAlignment="Center" Margin="5">
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+             Style="{StaticResource MaterialDesignButtonTextBlock}"
+             Text="TOTAL DE REGISTROS" />
+
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                              Padding="0 2"
+                              Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                              Text="{Binding GranTotal,Mode=TwoWay}" />
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--GRAN TOTAL-->
+
+                                <!--TOTAL CLOSED-->
+                                <materialDesign:Card
+                          Margin="2"
+                          HorizontalAlignment="Right"
+                         materialDesign:ElevationAssist.Elevation="Dp3"
+                         Width="150"
+                         Height="70"
+                         Background="{DynamicResource PrimaryHueMidBrush}"
+                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                         UniformCornerRadius="6">
+
+                                    <StackPanel HorizontalAlignment="Center" Margin="5">
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignButtonTextBlock}"
+                          Text="TOTAL DE CERRADOS" />
+
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Padding="0 2"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="{Binding TotalClosed}" />
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--TOTAL CLOSED-->
+
+                                <!--TOTAL OPEN-->
+                                <materialDesign:Card
+                      Margin="2"
+                      HorizontalAlignment="Right"
+                     materialDesign:ElevationAssist.Elevation="Dp3"
+                     Width="150"
+                     Height="70"
+                     Background="{DynamicResource SecondaryHueMidBrush}"
+                     Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                     UniformCornerRadius="6">
+
+                                    <StackPanel HorizontalAlignment="Center" Margin="5">
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignButtonTextBlock}"
+                          Text="TOTAL ACTIVOS" />
+
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Padding="0 2"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Text="{Binding TotalOpen}" />
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--TOTAL OPEN-->
+
+
+                            </StackPanel>
+
+                        </Border>
+                        <!--TOTALS-->
+
+                        <!--FILTERS-->
+                        <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="6" >
 
 
                             <StackPanel
@@ -129,7 +211,7 @@
 
                         
                         <!--GRAFICA DE BARRAS-->
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="12" Height="500" Margin="5">
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="12" Height="460" Margin="5">
                             <materialDesign:Card  
                             materialDesign:ElevationAssist.Elevation="Dp3">
                                 <Grid>
@@ -145,13 +227,6 @@
                                        Style="{StaticResource TitleTextLargeBlockStyle}"
                                        Text="TOTAL ACTIVOS POR ÁREAS" /> 
                                     
-                                    <!--<lvc:CartesianChart 
-                                    Grid.Row="1"
-                                  
-                                    Series="{Binding SeriesBar}"
-                                    XAxes="{Binding XAxesBar}"
-                                    />-->
-
                                     <lvc:CartesianChart 
                                     Grid.Row="1"
                                     Series="{Binding SeriesBar}"
@@ -164,26 +239,184 @@
 
                     </ge:ResponsiveGrid>
 
-
-
-                    <!--<TextBlock Text="PRIMERA VISTA" />
-                <Button Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
-                    NEXT
-                </Button>-->
                 </ScrollViewer>
             </Grid>
             <!--BAR GRAPHS>-->
 
             <!--PIE CHARTS>-->
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
+                <!--PIE CHARTS>-->
+                <Grid Margin="10 2">
 
-                <StackPanel Background="Blue" Width="200" Height="100">
-                    <TextBlock Text="SEGUNDO VISTA" />
+                    <!--<Grid.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Height" Value="60" />
+                        </Style>
+                    </Grid.Resources>-->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" >
 
-                    <Button Command="{x:Static materialDesign:Transitioner.MoveFirstCommand}">
-                        NEXT
-                    </Button>
-                </StackPanel>
+                        <ge:ResponsiveGrid>
+                            <!--BUTTON REGRESAR-->
+                            <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="12">
+
+                                <Button  
+                                    HorizontalAlignment="Right"
+                                   Height="50"
+                                    Width="130"
+                                   Margin="4"
+                                   Style="{StaticResource  MaterialDesignFlatDarkBgButton}"
+                                   Command="{x:Static materialDesign:Transitioner.MoveFirstCommand}">        
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ArrowLeftBoldCircle" Height="25" Width="25" />
+                                        <TextBlock Text="Regresar"  Margin="4"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Border>
+                            <!--BUTTON REGRESAR-->
+                            
+                            
+                            <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="6" Height="400" >
+
+                                <materialDesign:Card  
+                                 Grid.Row="0" Grid.Column="0" Margin="4"
+                                 materialDesign:ElevationAssist.Elevation="Dp3">
+
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock 
+                                          Grid.Row="0"
+                                          HorizontalAlignment="Center" 
+                                          Style="{StaticResource TitleTextLargeBlockStyle}"
+                                          Text="TOTAL POR URGENCIA" />
+                                        
+                                        <lvc:PieChart
+                                           Grid.Row="1"                       
+                                           IsClockwise="False"
+                                           InitialRotation="-90"
+                                                  AnimationsSpeed="00:00:00.500"
+                                          Series="{Binding SeriesUrgency }"
+                                          LegendPosition="Bottom">
+                                        </lvc:PieChart>
+
+                                    </Grid>
+                                </materialDesign:Card>
+
+                            </Border>
+
+                            <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="6" Height="400" >
+
+                                <materialDesign:Card  
+      Grid.Row="0" Grid.Column="0" Margin="4"
+      materialDesign:ElevationAssist.Elevation="Dp3">
+
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock 
+               Grid.Row="0"
+               HorizontalAlignment="Center" 
+               Style="{StaticResource TitleTextLargeBlockStyle}"
+               Text="TOTAL POR URGENCIA" />
+
+                                        <lvc:PieChart
+                Grid.Row="1"                       
+                IsClockwise="False"
+                InitialRotation="-90"
+                       AnimationsSpeed="00:00:00.500"
+               Series="{Binding SeriesUrgency }"
+               LegendPosition="Bottom">
+                                        </lvc:PieChart>
+
+                                    </Grid>
+                                </materialDesign:Card>
+
+                            </Border>
+
+                            <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="6" Height="400" >
+
+                                <materialDesign:Card  
+      Grid.Row="0" Grid.Column="0" Margin="4"
+      materialDesign:ElevationAssist.Elevation="Dp3">
+
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock 
+               Grid.Row="0"
+               HorizontalAlignment="Center" 
+               Style="{StaticResource TitleTextLargeBlockStyle}"
+               Text="TOTAL POR URGENCIA" />
+
+                                        <lvc:PieChart
+                Grid.Row="1"                       
+                IsClockwise="False"
+                InitialRotation="-90"
+                       AnimationsSpeed="00:00:00.500"
+               Series="{Binding SeriesUrgency }"
+               LegendPosition="Bottom">
+                                        </lvc:PieChart>
+
+                                    </Grid>
+                                </materialDesign:Card>
+
+                            </Border>
+
+                            <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="6" Height="400" >
+
+                                <materialDesign:Card  
+      Grid.Row="0" Grid.Column="0" Margin="4"
+      materialDesign:ElevationAssist.Elevation="Dp3">
+
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock 
+               Grid.Row="0"
+               HorizontalAlignment="Center" 
+               Style="{StaticResource TitleTextLargeBlockStyle}"
+               Text="TOTAL POR URGENCIA" />
+
+                                        <lvc:PieChart
+                Grid.Row="1"                       
+                IsClockwise="False"
+                InitialRotation="-90"
+                       AnimationsSpeed="00:00:00.500"
+               Series="{Binding SeriesUrgency }"
+               LegendPosition="Bottom">
+                                        </lvc:PieChart>
+
+                                    </Grid>
+                                </materialDesign:Card>
+
+                            </Border>
+
+
+
+                        </ge:ResponsiveGrid>
+                    </ScrollViewer>
+                </Grid>
+
             <!--PIE CHARTS>-->
             </materialDesign:TransitionerSlide>
             

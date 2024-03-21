@@ -149,13 +149,12 @@ namespace Epicor.App.ViewModel
 
             SeriesUrgency = _totalUrgencyArray.AsPieSeries((value, series) =>
             {
-                series.Name = _urgencyArray[_index++ % _urgencyArray.Length] ; //_urgencyArray[_index++ % _urgencyArray.Length];
+                series.Name = _urgencyArray[_index++ % _urgencyArray.Length]+" "+value.ToString() ;
                 series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle;
                 series.DataLabelsSize = 20;
                 series.DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0));
                 series.Values = new List<double>() {value};
-                //series.DataLabelsFormatter = point => point.PrimaryValue.ToString();
-                // series.DataLabelsFormatter = point => point.PrimaryValue.ToString("N2") + " elements";
+
             });
         }
 
