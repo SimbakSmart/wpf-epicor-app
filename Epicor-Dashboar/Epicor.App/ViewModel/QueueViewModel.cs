@@ -19,6 +19,15 @@ namespace Epicor.App.ViewModel
 
         private QueueServices qs = null;
 
+
+        [ObservableProperty]
+        private bool snackBarIsActive;
+        [ObservableProperty]
+        private string _messageSnackBar;
+
+        [ObservableProperty]
+        private string _message;
+
         [ObservableProperty]
         private DateTime? _startDate;
 
@@ -75,6 +84,7 @@ namespace Epicor.App.ViewModel
             await BarGraphByResponsableAsync();
             await UrgencyPieChartAsync();
             IsLoading = false;
+            qs.Dispose();
         }
         private async Task GetTotalsAsync(FiltersParams filters = null)
         {
@@ -111,6 +121,7 @@ namespace Epicor.App.ViewModel
                 Values = ListBar.Select(q => (double)q.Total).ToList(),
                 Padding = 1,
                 MaxBarWidth = double.PositiveInfinity,
+                Fill = new SolidColorPaint(new SKColor(25, 118, 210, 255)),
 
 
             };
@@ -138,7 +149,7 @@ namespace Epicor.App.ViewModel
 
             SeriesUrgency = _totalUrgencyArray.AsPieSeries((value, series) =>
             {
-                series.Name = _urgencyArray[_index++ % _urgencyArray.Length]; //_urgencyArray[_index++ % _urgencyArray.Length];
+                series.Name = _urgencyArray[_index++ % _urgencyArray.Length] ; //_urgencyArray[_index++ % _urgencyArray.Length];
                 series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle;
                 series.DataLabelsSize = 20;
                 series.DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0));
@@ -153,23 +164,68 @@ namespace Epicor.App.ViewModel
         [RelayCommand]
         private async Task SendRequesByDateRangeAsync()
         {
-            if (StartDate.HasValue && EndDate.HasValue)
+            try
             {
-                var filters = new FiltersParams.FiltersParamsBuilder()
-                                 .WithStartDate(StartDate.Value)
-                                 .WithEndDate(EndDate.Value)
-                                 .Build();
-                await GetTotalsAsync(filters);
-                await BarGraphByResponsableAsync(filters);
-                StartDate = null;
-                EndDate = null;
+                IsLoading = true;
+                if (StartDate.HasValue && EndDate.HasValue)
+                {
+                    var filters = new FiltersParams.FiltersParamsBuilder()
+                                     .WithStartDate(StartDate.Value)
+                                     .WithEndDate(EndDate.Value)
+                                     .Build();
+                    await GetTotalsAsync(filters);
+                    await BarGraphByResponsableAsync(filters);
+                    Message = $"Consulta generada del {StartDate?.Date.ToShortDateString()} al {EndDate?.Date.ToShortDateString()}";
+                    StartDate = null;
+                    EndDate = null;
+                    IsLoading = false;
+                    MessageSnackBar = "La consulta fue generada con exito";
+                    SnackBarIsActive = true;
+                    await Task.Delay(TimeSpan.FromSeconds(3));
+                    SnackBarIsActive = false;
+
+                }
+
             }
+            catch
+            {
+
+            }
+            finally
+            {
+                IsLoading = false;
+                SnackBarIsActive = false;
+                qs.Dispose();
+            }
+           
+            
         }
 
         [RelayCommand]
         private async Task RefreshAsync()
         {
-            await LoadDataAsync();
+           
+            try
+            {
+                IsLoading = true;
+                await LoadDataAsync();
+                Message = string.Empty;
+                IsLoading = false;
+                MessageSnackBar = "Carga de todos los resultados activos";
+                SnackBarIsActive = true;
+                await Task.Delay(TimeSpan.FromSeconds(3));
+                SnackBarIsActive = false;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+               IsLoading=false;
+               SnackBarIsActive = false;
+                qs.Dispose();
+            }
         }
 
     }

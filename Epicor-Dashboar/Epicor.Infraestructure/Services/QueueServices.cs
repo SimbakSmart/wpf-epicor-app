@@ -14,9 +14,10 @@ namespace Epicor.Infraestructure.Services
     {
         private OdbcConnection con = null;
 
-        public void Dispose()
+        public async void Dispose()
         {
-           if (con != null) con.Close();
+           if (con != null)  
+                await con.CloseAsync();
         }
 
         public async Task<List<Queues>> GetTotalsAsync(FiltersParams filters = null)

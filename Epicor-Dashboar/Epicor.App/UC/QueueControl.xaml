@@ -38,7 +38,16 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto" x:Name="scrollView">
 
                     <ge:ResponsiveGrid>
-                         <!--IMAGE-->
+
+
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="12" >
+                            <TextBlock Text="{Binding Message}" Margin="4 0"
+                                       HorizontalAlignment="Right"
+                              Style="{StaticResource MaterialDesignSubtitle1TextBlock}" />
+                        </Border>
+
+                      
+                        <!--IMAGE-->
                         <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="4" >
 
                             <StackPanel Orientation="Horizontal">
@@ -56,19 +65,21 @@
                               Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="ChartPie" Height="25" Width="25" />
-                                        <TextBlock Text="Graficas" />
+                                        <TextBlock Text="Otras Graficas"  Margin="4"/>
                                     </StackPanel>
                                
                             </Button>
+
+                               
 
                             </StackPanel>
                         </Border>
                         <!--IMAGE-->
 
-                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="4"  />
+                        <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="3"  />
                         
                          <!--FILTERS-->
-                        <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="4" >
+                        <Border ge:ResponsiveGrid.XS="12" ge:ResponsiveGrid.SM="5" >
 
 
                             <StackPanel
@@ -93,7 +104,11 @@
                                 Margin="4 0"
                                 Style="{StaticResource  MaterialDesignFlatDarkBgButton}"
                                 Command="{Binding SendRequesByDateRangeCommand}">
-                                    <materialDesign:PackIcon Kind="Magnify" Height="25" Width="25" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Magnify" Height="25" Width="25" />
+                                        <TextBlock Text="Buscar"  Margin="4"/>
+                                    </StackPanel>
+                                   
                                 </Button>
 
                                 <Button  
@@ -101,7 +116,10 @@
                                 Margin="1 0"
                                 Style="{StaticResource  MaterialDesignFlatDarkBgButton}"
                                 Command="{Binding RefreshCommand}">
-                                    <materialDesign:PackIcon Kind="Autorenew" Height="25" Width="25" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Autorenew" Height="25" Width="25" />
+                                        <TextBlock Text="Recargar"  Margin="4"/>
+                                    </StackPanel>
                                 </Button>
 
                             </StackPanel>
@@ -109,6 +127,8 @@
                         </Border>
                         <!--FILTERS-->
 
+                        
+                        <!--GRAFICA DE BARRAS-->
                         <Border ge:ResponsiveGrid.XS="12"  ge:ResponsiveGrid.SM="12" Height="500" Margin="5">
                             <materialDesign:Card  
                             materialDesign:ElevationAssist.Elevation="Dp3">
@@ -118,16 +138,29 @@
                                         <RowDefinition Height="30" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
+                                    
+                                    <TextBlock 
+                                       Grid.Row="0"
+                                       HorizontalAlignment="Center" 
+                                       Style="{StaticResource TitleTextLargeBlockStyle}"
+                                       Text="TOTAL ACTIVOS POR ÁREAS" /> 
+                                    
+                                    <!--<lvc:CartesianChart 
+                                    Grid.Row="1"
+                                  
+                                    Series="{Binding SeriesBar}"
+                                    XAxes="{Binding XAxesBar}"
+                                    />-->
 
                                     <lvc:CartesianChart 
                                     Grid.Row="1"
                                     Series="{Binding SeriesBar}"
                                     XAxes="{Binding XAxesBar}"
                                     />
-
                                 </Grid>
                             </materialDesign:Card>
                         </Border>
+                        <!--GRAFICA DE BARRAS-->
 
                     </ge:ResponsiveGrid>
 
@@ -156,9 +189,19 @@
             
         </materialDesign:Transitioner>
 
-        <!--LOADING-->
+        
+        <!--SNACK BAR-->
+        <materialDesign:Snackbar
+  x:Name="SnackbarOne"
+  IsActive="{Binding SnackBarIsActive}"
+  Message="{Binding MessageSnackBar}"
+           
+  MessageQueue="{materialDesign:MessageQueue}"/>
+        <!--SNACK BAR-->
 
-        <materialDesign:Card Background="{StaticResource BackgroundModalColorBrush}"   Opacity="100"
+        <!--LOADING-->
+        <materialDesign:Card Background="{StaticResource BackgroundModalColorBrush}"   
+                             Opacity="0.8"
                         Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibilityConverter}}">
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
