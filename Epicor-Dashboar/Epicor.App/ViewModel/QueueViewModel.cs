@@ -105,6 +105,7 @@ namespace Epicor.App.ViewModel
             IsEnable = true;
             qs = new QueueServices();
             Task.Run(async () => await LoadDataAsync());
+          
         }
 
         private async Task LoadDataAsync()
@@ -175,13 +176,29 @@ namespace Epicor.App.ViewModel
 
         private async Task GetTotalsByRangeAsync(FiltersParams filters = null)
         {
-             ListByRange = await qs.GetTotalsByRangeDayseAsync();
+            if(filters != null)
+            {
+                ListByRange = await qs.GetTotalsByRangeDayseAsync(filters);
+            }
+            else
+            {
+                ListByRange = await qs.GetTotalsByRangeDayseAsync();
+            }
+            
         }
 
         private async Task BarGraphBySatusAsync(FiltersParams filters = null)
         {
             ListStatus?.Clear();
-            ListStatus = await  qs.GetTotalsByStatuseAsync();
+            if(filters != null)
+            {
+                ListStatus = await qs.GetTotalsByStatuseAsync(filters);
+            }
+            else
+            {
+                ListStatus = await qs.GetTotalsByStatuseAsync();
+            }
+          
 
             UserSeriesStatus = new ColumnSeries<double>()
             {
@@ -207,44 +224,6 @@ namespace Epicor.App.ViewModel
             SeriesStatus = new ISeries[] { UserSeriesStatus };
             XAxesStatus = new Axis[] { _axis };
 
-
-
-
-            //ListBar?.Clear();
-
-            //if (filters != null)
-            //{
-            //    ListBar = await qs.GetTotalsByResponsableAsync(filters);
-            //}
-            //else
-            //{
-            //    ListBar = await qs.GetTotalsByResponsableAsync();
-            //}
-
-
-            //UserSeriesBar = new ColumnSeries<double>()
-            //{
-            //    Name = "Reportes Activos",
-            //    Values = ListBar.Select(q => (double)q.Total).ToList(),
-            //    Padding = 1,
-            //    MaxBarWidth = double.PositiveInfinity,
-            //    Fill = new SolidColorPaint(new SKColor(25, 118, 210, 255)),
-
-
-            //};
-            //Axis _axis = new Axis()
-            //{
-            //    Labels = ListBar.Select(q => q.Name).ToList(),
-            //    TextSize = 12,
-            //    LabelsAlignment = LiveChartsCore.Drawing.Align.Start,
-            //    IsVisible = true,
-            //    LabelsRotation = -90,
-            //    Position = AxisPosition.Start,
-            //    Padding = new LiveChartsCore.Drawing.Padding(0)
-            //};
-
-            //SeriesBar = new ISeries[] { UserSeriesBar };
-            //XAxesBar = new Axis[] { _axis };
         }
         private async Task UrgencyPieChartAsync()
         {
@@ -284,6 +263,8 @@ namespace Epicor.App.ViewModel
                                      .Build();
                     await GetTotalsAsync(filters);
                     await BarGraphByResponsableAsync(filters);
+                    await   BarGraphBySatusAsync(filters);
+                    await GetTotalsByRangeAsync(filters);
                     Message = $"Consulta generada del {StartDate?.Date.ToShortDateString()} al {EndDate?.Date.ToShortDateString()}";
                     StartDate = null;
                     EndDate = null;
@@ -331,6 +312,7 @@ namespace Epicor.App.ViewModel
             finally
             {
                // IsEnable = true;
+               Message = string.Empty;
                 IsLoading =false;
                SnackBarIsActive = false;
                 qs.Dispose();

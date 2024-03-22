@@ -187,8 +187,18 @@ Text="TOTAL DE REGISTROS" />
                               Orientation="Horizontal" 
                               HorizontalAlignment="Right">
 
+
+                                <DatePicker
+                             Width="160"
+                             materialDesign:HintAssist.Hint="Fecha Inicial"
+                             materialDesign:HintAssist.HelperText="{Binding MessageStartDate}"
+                             materialDesign:ValidationAssist.HasError="{Binding StartDateHasError}"
+                             Style="{StaticResource CustomMaterialDesignOutlinedDatePicker}" 
+                             SelectedDate="{Binding StartDate}"/>
+
                                 <DatePicker
                                 Width="160"
+                                Margin="4 0"
                                 materialDesign:HintAssist.Hint="Fecha Final"
                                 materialDesign:HintAssist.HelperText="{Binding MessageStartDate}"
                                 materialDesign:ValidationAssist.HasError="{Binding StartDateHasError}"

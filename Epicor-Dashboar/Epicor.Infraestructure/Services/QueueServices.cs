@@ -144,27 +144,27 @@ namespace Epicor.Infraestructure.Services
             try
             {
 
-                //if (filters != null)
-                //{
-                //    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_QUEUES_RESPONSABLES_WITH_FILTERS;
-                //}
-                //else
-                //{
-                //    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_QUEUES_RESPONSABLES;
-                //}
+                if (filters != null)
+                {
+                    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_RANGE_DAYS_WITH_FILTERS;
+                }
+                else
+                {
+                    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_RANGE_DAYS;
+                }
 
-                _query = QueuesQueriesStrings.TOTAL_OPEN_BY_RANGE_DAYS;
+               
                 using (OdbcConnection con = new OdbcConnection(DBContext.GetConnectionString))
                 {
                     await con.OpenAsync();
                     using (OdbcCommand com = new OdbcCommand(_query, con))
                     {
-                        //if (filters != null)
-                        //{
-                        //    com.CommandType = CommandType.Text;
-                        //    com.Parameters.Add("@StartDate", OdbcType.DateTime).Value = filters.StartDate;
-                        //    com.Parameters.Add("@EndDate", OdbcType.DateTime).Value = filters.EndDate;
-                        //}
+                        if (filters != null)
+                        {
+                            com.CommandType = CommandType.Text;
+                            com.Parameters.Add("@StartDate", OdbcType.DateTime).Value = filters.StartDate;
+                            com.Parameters.Add("@EndDate", OdbcType.DateTime).Value = filters.EndDate;
+                        }
 
                         using (OdbcDataReader reader = com.ExecuteReader())
                         {
@@ -260,28 +260,28 @@ namespace Epicor.Infraestructure.Services
             try
             {
 
-                //if (filters != null)
-                //{
-                //    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_QUEUES_RESPONSABLES_WITH_FILTERS;
-                //}
-                //else
-                //{
-                //    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_QUEUES_RESPONSABLES;
-                //}
+                if (filters != null)
+                {
+                    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_STATUS_WITH_FILTERS;
+                }
+                else
+                {
+                    _query = QueuesQueriesStrings.TOTAL_OPEN_BY_STATUS;
+                }
 
-                _query = QueuesQueriesStrings.TOTAL_OPEN_BY_STATUS;
+                
 
                 using (OdbcConnection con = new OdbcConnection(DBContext.GetConnectionString))
                 {
                     await con.OpenAsync();
                     using (OdbcCommand com = new OdbcCommand(_query, con))
                     {
-                        //if (filters != null)
-                        //{
-                        //    com.CommandType = CommandType.Text;
-                        //    com.Parameters.Add("@StartDate", OdbcType.DateTime).Value = filters.StartDate;
-                        //    com.Parameters.Add("@EndDate", OdbcType.DateTime).Value = filters.EndDate;
-                        //}
+                        if (filters != null)
+                        {
+                            com.CommandType = CommandType.Text;
+                            com.Parameters.Add("@StartDate", OdbcType.DateTime).Value = filters.StartDate;
+                            com.Parameters.Add("@EndDate", OdbcType.DateTime).Value = filters.EndDate;
+                        }
 
                         using (OdbcDataReader reader = com.ExecuteReader())
                         {
